@@ -59,9 +59,12 @@ const MainPage = () => {
 
     if (trimmedTokenInput) {
       try {
-        const response = await axios.post("https://shill-gg-backend.onrender.com/api/shill", {
-          ticker: trimmedTokenInput,
-        });
+        const response = await axios.post(
+          "https://shill-gg-backend.onrender.com/api/shill",
+          {
+            ticker: trimmedTokenInput,
+          }
+        );
         console.log("Submitted ticker:", response.data);
         toast.success(`Token ${trimmedTokenInput} shilled successfully!`);
         setTokenInput("");
@@ -76,7 +79,7 @@ const MainPage = () => {
   };
 
   return (
-    <div className="App">
+    <div id="main-page" className="App">
       <header>
         <div className="top-bar">
           <nav>
@@ -138,20 +141,22 @@ const MainPage = () => {
             ))}
           </div>
 
-          <div className="pagination">
-            <button onClick={handlePrevPage} disabled={currentPage === 1}>
-              Previous
-            </button>
-            <span>
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            >
-              Next
-            </button>
-          </div>
+          {totalPages > 0 && (
+            <div className="pagination">
+              <button onClick={handlePrevPage} disabled={currentPage === 1}>
+                Previous
+              </button>
+              <span>
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>
+          )}
         </section>
       </main>
 

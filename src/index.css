@@ -133,6 +133,13 @@ section h2 {
   max-width: 100%;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 #add-token-form button,
 #website-creator button,
 .pagination button {
@@ -192,6 +199,7 @@ section h2 {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 0 10px;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -328,6 +336,17 @@ section {
   background-color: #1c1f23;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 1200px;
+}
+
+#main-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+#main-page main {
+  flex: 1;
 }
 
 #website-creator-page {
