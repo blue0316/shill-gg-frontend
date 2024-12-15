@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const TokenCard = ({ item, itemFetcher }) => {
   const shillerHandler = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/shill", {
+      const response = await axios.post("https://shill-gg-backend.onrender.com/api/shill", {
         ticker: item.ticker,
       });
       console.log("Submitted ticker:", response.data);

@@ -16,7 +16,7 @@ const MainPage = () => {
   const fetchLeaderboardData = useCallback(async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/leaderboard",
+        "https://shill-gg-backend.onrender.com/api/leaderboard",
         {
           params: {
             sortBy: sortCriteria,
@@ -59,7 +59,7 @@ const MainPage = () => {
 
     if (trimmedTokenInput) {
       try {
-        const response = await axios.post("http://localhost:5000/api/shill", {
+        const response = await axios.post("https://shill-gg-backend.onrender.com/api/shill", {
           ticker: trimmedTokenInput,
         });
         console.log("Submitted ticker:", response.data);
