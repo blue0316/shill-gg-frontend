@@ -153,6 +153,13 @@ section h2 {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+#add-token-form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+}
+
 #add-token-form button:hover,
 #website-creator button:hover,
 .pagination button:hover:not(:disabled) {
@@ -238,6 +245,7 @@ section h2 {
 
 .card-header .shill-button {
   padding: 5px 10px;
+  min-width: 48px;
   background-color: var(--primary-color);
   border: none;
   color: #fff;
@@ -258,7 +266,6 @@ section h2 {
 }
 
 footer {
-  margin-top: 40px;
   text-align: center;
   padding: 10px 0;
   background-color: #111;
@@ -358,7 +365,6 @@ section {
 #website-creator-page main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   flex: 1;
 }
 
@@ -382,4 +388,109 @@ section {
   margin-bottom: 30px;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#token-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+#token-details h2 {
+  width: 100%;
+}
+
+#token-details .token-avatar {
+  border: 6px double rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+
+#token-details .description {
+  width: 75%;
+  text-align: center;
+}
+
+#token-details .marketcap-wrapper {
+  display: flex;
+  gap: 40px;
+}
+
+#token-details .marketcap {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.marketcap .price {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+#token-details .price-chart-wrapper {
+  width: 90%;
+  height: 360px;
+}
+
+#token-details .social-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-wrapper .title {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.token-address-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.copy-btn {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: all;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  transform: scale(1.05);
+}
+
+.blockchain-icon {
+  width: 20px;
+  color: #fff;
+}
+
+.token-social-link {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  min-width: 160px;
+  border-radius: 21px;
+  background-color: var(--primary-color);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.token-social-link:hover {
+  background-color: #3e8e41;
+  transform: scale(1.05);
 }

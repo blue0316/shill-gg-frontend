@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import TokenCard from "../../components/TokenCard";
 import { toast } from "react-toastify";
+import { ReactComponent as Spinner } from "../../assets/tadpole-white-36.svg";
 
 const MainPage = () => {
   const itemsPerPage = 27;
@@ -12,11 +13,13 @@ const MainPage = () => {
   const [sortCriteria, setSortCriteria] = useState("mostShilled");
   const [tokenInput, setTokenInput] = useState("");
   const [totalPages, setTotalPages] = useState(0);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [fetchLoading, setFetchLoading] = useState(false);
 
   const fetchLeaderboardData = useCallback(async () => {
     try {
       const response = await axios.get(
-        "https://shill-gg-backend.onrender.com/api/leaderboard",
+        `${process.env.REACT_APP_BACKEND_HOST}/api/leaderboard`,
         {
           params: {
             sortBy: sortCriteria,
@@ -30,10 +33,13 @@ const MainPage = () => {
     } catch (error) {
       console.error("Error fetching leaderboard data:", error);
       toast.error("Failed to fetch leaderboard data.");
+    } finally {
+      setFetchLoading(false);
     }
   }, [currentPage, sortCriteria]);
 
   useEffect(() => {
+    setFetchLoading(true);
     fetchLeaderboardData();
   }, [currentPage, fetchLeaderboardData, sortCriteria]);
 
@@ -58,9 +64,10 @@ const MainPage = () => {
     const trimmedTokenInput = tokenInput.trim();
 
     if (trimmedTokenInput) {
+      setSubmitLoading(true);
       try {
         const response = await axios.post(
-          "https://shill-gg-backend.onrender.com/api/shill",
+          `${process.env.REACT_APP_BACKEND_HOST}/api/shill`,
           {
             ticker: trimmedTokenInput,
           }
@@ -72,6 +79,8 @@ const MainPage = () => {
       } catch (error) {
         console.error("Error submitting token:", error);
         toast.error(error.response?.data?.error || "An error occurred.");
+      } finally {
+        setSubmitLoading(false);
       }
     } else {
       toast.error("Please enter a valid ticker!");
@@ -113,7 +122,9 @@ const MainPage = () => {
                 required
               />
             </div>
-            <button type="submit">SHILL</button>
+            <button type="submit" disabled={submitLoading}>
+              {submitLoading ? <Spinner width={20} height={20} /> : "SHILL"}
+            </button>
           </form>
         </section>
 
@@ -131,15 +142,21 @@ const MainPage = () => {
               <option value="newlyShilled">Newly Shilled</option>
             </select>
           </div>
-          <div className="leaderboard-grid">
-            {leaderboardItems.map((item) => (
-              <TokenCard
-                key={item.rank}
-                item={item}
-                itemFetcher={fetchLeaderboardData}
-              />
-            ))}
-          </div>
+          {fetchLoading ? (
+            <div className="spinner-container">
+              <Spinner width={40} height={40} />
+            </div>
+          ) : (
+            <div className="leaderboard-grid">
+              {leaderboardItems.map((item) => (
+                <TokenCard
+                  key={item.rank}
+                  item={item}
+                  itemFetcher={fetchLeaderboardData}
+                />
+              ))}
+            </div>
+          )}
 
           {totalPages > 0 && (
             <div className="pagination">
