@@ -26,9 +26,8 @@ const TokenCard = ({ item, itemFetcher }) => {
     }
   };
 
-  // Abbreviate ticker if its length is greater than 10
   const displayTicker =
-    item.ticker.length > 10 ? `${item.ticker.slice(0, 5)}...${item.ticker.slice(-4)}` : item.ticker;
+    item.ticker.length > 6 ? `${item.ticker.slice(0, 3)}...${item.ticker.slice(-2)}` : item.ticker;
 
   return (
     <div className="card">
