@@ -26,21 +26,21 @@ const TokenCard = ({ item, itemFetcher }) => {
     }
   };
 
+  // Abbreviate ticker if its length is greater than 10
+  const displayTicker =
+    item.ticker.length > 10 ? `${item.ticker.slice(0, 5)}...${item.ticker.slice(-4)}` : item.ticker;
+
   return (
     <div className="card">
       <div className="card-header">
         <span className="rank">{item.rank}</span>
-        <span className="token">{item.ticker}</span>
+        <span className="token">{displayTicker}</span>
         <button
           className="shill-button"
           onClick={shillerHandler}
           disabled={loading}
         >
-          {loading ? (
-            <Spinner width={10} height={10} />
-          ) : (
-            "Shill"
-          )}
+          {loading ? <Spinner width={10} height={10} /> : "Shill"}
         </button>
       </div>
       <p className="card-info">
