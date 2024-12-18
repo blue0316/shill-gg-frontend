@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ReactComponent as Spinner } from "../../assets/tadpole-white-36.svg";
-import { ReactComponent as Copy } from "../../assets/copy.svg";
-import { toast } from "react-toastify";
-import TokenPriceChart from "../../components/TokenPriceChart";
 
 const PumpFunCreatorPage = () => {
+  const navigate = useNavigate();
+
   const [pumpUrl, setPumpUrl] = useState("");
   const [tokenMetadata, setTokenMetadata] = useState(null);
   const [error, setError] = useState("");
@@ -28,6 +27,12 @@ const PumpFunCreatorPage = () => {
       );
       setTokenMetadata(response.data);
       setError("");
+
+      navigate(`/${response.data.mint}`, {
+        state: {
+          data: response.data,
+        },
+      });
     } catch (err) {
       console.error("Failed to fetch token metadata:", err);
       setError("Failed to fetch token metadata.");
@@ -35,26 +40,6 @@ const PumpFunCreatorPage = () => {
       setLoading(false);
     }
     setPumpUrl("");
-  };
-
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text).then(
-      () => {
-        toast.success("Token contract is copied to clipboard!", {
-          delay: 1000,
-        });
-      },
-      (err) => {
-        console.error("Could not copy text: ", err);
-      }
-    );
-  };
-
-  const formatMarketCap = (value) => {
-    if (value >= 1000) {
-      return `$${(value / 1000).toFixed(1)}K`;
-    }
-    return `$${value}`;
   };
 
   return (
@@ -79,113 +64,33 @@ const PumpFunCreatorPage = () => {
           <p>- under maintenance -</p>
         </div>
 
-        {tokenMetadata ? (
-          <section id="token-details">
-            <h2>
-              {tokenMetadata.name} ({tokenMetadata.symbol})
-            </h2>
-            <img
-              className="token-avatar"
-              src={tokenMetadata.image_uri}
-              alt={`${tokenMetadata.name} Avatar`}
-              width="160"
+        <section id="website-creator">
+          <h2>Create Your Pump.fun Project Website</h2>
+          <p>
+            Our simple tool helps you create a simple website for your Pump.fun
+            token. Enter your Pump.fun URL or token contract address below to
+            automatically generate your website for free.
+          </p>
+
+          <form id="create-website-form" onSubmit={handleSubmit}>
+            <input
+              id="pump-url"
+              placeholder="Enter Pump.fun URL or CA"
+              value={pumpUrl}
+              onChange={handleInputChange}
+              required
             />
-
-            {tokenMetadata.mint && (
-              <div className="token-address-wrapper">
-                <img
-                  src="https://shill-space-dev.s3.eu-central-1.amazonaws.com/chainlogos/solana.svg"
-                  alt="solana"
-                  class="blockchain-icon"
-                />{" "}
-                {`${tokenMetadata.mint.slice(
-                  0,
-                  5
-                )}...${tokenMetadata.mint.slice(-4)}`}
-                <button
-                  className="copy-btn"
-                  onClick={() => copyToClipboard(tokenMetadata.mint)}
-                >
-                  <Copy stroke="white" />
-                </button>
-              </div>
-            )}
-
-            <p className="description">{tokenMetadata.description}</p>
-
-            <div className="marketcap-wrapper">
-              <div className="marketcap">
-                <strong>Current Market Cap</strong>
-                <div className="price">
-                  {formatMarketCap(tokenMetadata.current_market_cap)}
-                </div>
-              </div>
-              <div className="marketcap">
-                <strong>Bonding Market Cap</strong>
-                <div className="price">
-                  {formatMarketCap(tokenMetadata.bonding_market_cap)}
-                </div>
-              </div>
-            </div>
-
-            <div className="price-chart-wrapper">
-              <TokenPriceChart token={tokenMetadata.mint} />
-            </div>
-
-            <div>
-              <strong>Deployed Date:</strong>{" "}
-              {new Date(tokenMetadata.deploy_timestamp).toLocaleDateString()}
-            </div>
-
-            <div className="social-wrapper">
-              <div className="title">Social Links</div>
-              {tokenMetadata.twitter && (
-                <a className="token-social-link" href={tokenMetadata.twitter}>
-                  Twitter
-                </a>
+            <button type="submit" disabled={loading}>
+              {loading ? (
+                <Spinner width={16} height={16} />
+              ) : (
+                "Generate Website"
               )}
-              {tokenMetadata.telegram && (
-                <a className="token-social-link" href={tokenMetadata.telegram}>
-                  Telegram
-                </a>
-              )}
-              <a
-                className="token-social-link"
-                href={`https://pump.fun/coin/${tokenMetadata.mint}`}
-              >
-                Website
-              </a>
-            </div>
-          </section>
-        ) : (
-          <section id="website-creator">
-            <h2>Create Your Pump.fun Project Website</h2>
-            <p>
-              Our simple tool helps you create a simple website for your
-              Pump.fun token. Enter your Pump.fun URL or token contract address
-              below to automatically generate your website for free.
-            </p>
+            </button>
+          </form>
 
-            <form id="create-website-form" onSubmit={handleSubmit}>
-              <input
-                id="pump-url"
-                placeholder="Enter Pump.fun URL or CA"
-                value={pumpUrl}
-                onChange={handleInputChange}
-                required
-              />
-              <button type="submit" disabled={loading}>
-                {loading ? (
-                  <Spinner width={16} height={16} />
-                ) : (
-                  "Generate Website"
-                )}
-              </button>
-            </form>
-
-            {error && <p style={{ color: "red" }}>{error}</p>}
-          </section>
-        )}
+          {error && <p style={{ color: "red" }}>{error}</p>}
+        </section>
       </main>
 
       <footer>

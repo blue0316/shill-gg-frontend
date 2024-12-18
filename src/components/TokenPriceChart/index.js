@@ -45,7 +45,7 @@ const TokenPriceChart = ({ token }) => {
   }, [token]);
 
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div style={{ width: "100%", height: "calc(100% + 20px)" }}>
       <div
         id={PRICE_CHART_ID}
         ref={containerRef}
