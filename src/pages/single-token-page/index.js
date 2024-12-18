@@ -34,8 +34,8 @@ const SingleTokenPage = () => {
       <main>
         {data && (
           <div id="token-details">
-            <div className="card">
-              <div className="card-bg" />
+            <div className="token-avatar-wrapper">
+              <div className="token-avatar-wrapper-bg" />
               <img
                 className="token-avatar"
                 src={data.image_uri}
