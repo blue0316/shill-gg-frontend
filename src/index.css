@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --bg-color-dark: #222;
   --bg-color-light: #333;
@@ -676,4 +680,45 @@ section {
   100% {
     background-position: top right;
   }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 15px);
+  }
+  100% {
+    transform: translate(0, -0px);
+  }
+}
+
+.animate-rotation {
+  animation-name: rotation;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+.animate-floating {
+  animation-name: floating;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+.grid2 > * {
+  border: 2px dashed rgba(194, 204, 208, 0.5);
+  border-radius: 20px;
 }

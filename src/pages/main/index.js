@@ -147,15 +147,23 @@ const MainPage = () => {
               <Spinner width={40} height={40} />
             </div>
           ) : (
-            <div className="leaderboard-grid">
-              {leaderboardItems.map((item) => (
-                <TokenCard
-                  key={item.rank}
-                  item={item}
-                  itemFetcher={fetchLeaderboardData}
-                />
-              ))}
-            </div>
+            <>
+              {leaderboardItems.length > 0 ? (
+                <div className="leaderboard-grid">
+                  {leaderboardItems.map((item) => (
+                    <TokenCard
+                      key={item.rank}
+                      item={item}
+                      itemFetcher={fetchLeaderboardData}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <h3 className="mt-8 mb-4 w-full text-center font-semibold text-xl">
+                  No shilled tokens today
+                </h3>
+              )}
+            </>
           )}
 
           {totalPages > 0 && (

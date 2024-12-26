@@ -9,7 +9,7 @@ function App() {
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="/pump-fun-creator" element={<PumpFunCreatorPage />} />
-      <Route path="/:tokenca" element={<SingleTokenPage />} />
+      <Route path="/token/:tokenca" element={<SingleTokenPage />} />
     </Routes>
   );
 }

@@ -7,7 +7,6 @@ const PumpFunCreatorPage = () => {
   const navigate = useNavigate();
 
   const [pumpUrl, setPumpUrl] = useState("");
-  const [tokenMetadata, setTokenMetadata] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -25,10 +24,9 @@ const PumpFunCreatorPage = () => {
           token: pumpUrl,
         }
       );
-      setTokenMetadata(response.data);
       setError("");
 
-      navigate(`/${response.data.mint}`, {
+      navigate(`/token/${response.data.mint}`, {
         state: {
           data: response.data,
         },
@@ -80,7 +78,7 @@ const PumpFunCreatorPage = () => {
               onChange={handleInputChange}
               required
             />
-            <button type="submit" disabled={loading}>
+            <button type="submit" disabled={loading} className="flex justify-center">
               {loading ? (
                 <Spinner width={16} height={16} />
               ) : (
