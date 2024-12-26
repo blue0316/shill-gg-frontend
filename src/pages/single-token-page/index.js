@@ -28,7 +28,7 @@ const SingleTokenPage = () => {
         <HeroSection />
         <Banner />
         <WhatisSonic />
-        {/* <CardSection /> */}
+        <CardSection />
         <SelectSonic />
         <SonicLab />
         <Banner />

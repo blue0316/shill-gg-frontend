@@ -3,8 +3,12 @@ import { BiRightArrowAlt } from "react-icons/bi";
 import GridPatern from "../../../components/GridPatern";
 import Footer from "./Footer";
 import MainButton from "../../../components/MainButton";
+import { useAtom } from "jotai";
+import { tokenDataAtom } from "../../../store";
 
 const MemeCoin = () => {
+  const [data] = useAtom(tokenDataAtom);
+
   return (
     <div className="relative h-[1440px]">
       <h2
@@ -31,12 +35,14 @@ const MemeCoin = () => {
         >
           <img
             className="rounded-full border-4"
-            src="/images/logosonic.png"
+            src={data ? data.image_uri : "/images/logosonic.png"}
             alt="logo"
             width={80}
             height={80}
           />
-          <h1 className="font-bold text-white text-[32px]">SONIC</h1>
+          <h1 className="font-bold text-white text-[32px] uppercase">
+            {data ? data.name : "SONIC"}
+          </h1>
         </div>
       </div>
       <div className="rounded-b-[3rem] overflow-hidden">

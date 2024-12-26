@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer
       className="absolute bottom-0 px-10 w-full bg-slate-900 text-white py-12 flex flex-col gap-8"
-      data-aos="fade-down"
+      data-aos="fade-up"
     >
       <div className="flex flex-col md:flex-row gap-6 md:gap-0 items-center justify-between">
         <div className="flex items-center justify-center gap-4">

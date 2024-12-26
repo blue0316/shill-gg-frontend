@@ -6,7 +6,6 @@ import { useAtom } from "jotai";
 const Header = () => {
   const [data] = useAtom(tokenDataAtom);
 
-  console.log(data);
   return (
     <header className="border-b-4 border-gray-400/15 flex justify-between py-6 px-10 mx-auto bg-[#DCE2E6] rounded-bl-[48px] rounded-br-[48px]">
       <div className="flex items-center gap-4" data-aos="zoom-in">
