@@ -27,7 +27,7 @@ const WhatisSonic = () => {
               duration: 0.5,
               delay: 0.2,
             }}
-            className="text-white lg:text-[80px] text-[80px] font-extrabold tracking-tighter"
+            className="text-white lg:text-[80px] text-[80px] font-extrabold tracking-tighter uppercase"
           >
             WHAT IS '{data ? data.name : "SONIC"}'?
           </MotionP>
@@ -46,7 +46,7 @@ const WhatisSonic = () => {
           </MotionP>
         </div>
         <div className="absolute -bottom-14">
-          <MainButton className="border-4 text--[#B0B0B0] bg-[#383838] border-[#B0B0B0]">
+          <MainButton className="border-4 text-[32px] text--[#B0B0B0] bg-[#383838] border-[#B0B0B0]">
             See all details
           </MainButton>
         </div>

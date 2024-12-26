@@ -6,43 +6,43 @@ import MainButton from "../../../components/MainButton";
 
 const MemeCoin = () => {
   return (
-    <div className="relative h-[720px]">
+    <div className="relative h-[1440px]">
       <h2
-        className="absolute top-16 text-3xl md:text-5xl lg:text-6xl text-center text-white font-extrabold"
+        className="absolute top-32 text-[3.75rem] md:text-[6rem] lg:text-[7.5rem] text-center text-white font-extrabold"
         data-aos="zoom-out-down"
       >
         SONIC IS A MEME COIN CRYPTOCURRENCY
       </h2>
       <img
         data-aos="zoom-out-up"
-        className="absolute top-20 lg:left-64 md:left-[190px] "
+        className="absolute top-40 lg:left-128 md:left-[380px] "
         src="/images/last.png"
         alt="logo"
-        width={500}
-        height={500}
+        width={1000}
+        height={1000}
       />
-      <div className="absolute top-[425px] px-2 md:px-16 w-full flex items-center justify-between">
-        <MainButton className="flex items-center justify-center gap-2  text-black">
+      <div className="absolute top-[850px] px-4 md:px-32 w-full flex items-center justify-between">
+        <MainButton className="flex items-center justify-center gap-4 text-black text-[32px]">
           See more <BiRightArrowAlt />
         </MainButton>
         <div
-          className="flex items-center justify-center gap-2"
+          className="flex items-center justify-center gap-4"
           data-aos="fade-left"
         >
           <img
-            className="rounded-full border-2"
+            className="rounded-full border-4"
             src="/images/logosonic.png"
             alt="logo"
-            width={40}
-            height={40}
+            width={80}
+            height={80}
           />
-          <h1 className="font-bold text-white">SONIC</h1>
+          <h1 className="font-bold text-white text-[32px]">SONIC</h1>
         </div>
       </div>
-      <div className="rounded-b-3xl overflow-hidden">
+      <div className="rounded-b-[3rem] overflow-hidden">
         <GridPatern />
       </div>
-      <div className="rounded-t-3xl overflow-hidden">
+      <div className="rounded-t-[3rem] overflow-hidden">
         <GridPatern />
       </div>
       <Footer />

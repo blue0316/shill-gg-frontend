@@ -15,7 +15,7 @@ const SonicCard = () => {
         duration: 0.5,
         delay: 0.2,
       }}
-      className="absolute w-[320px] left-[60%] -bottom-24 hidden md:block"
+      className="absolute w-[320px] left-[70%] -bottom-24 hidden md:block"
     >
       <div className="bg-[#F2585E] flex items-center justify-center rounded-t-[32px] border-4 border-[#B0B0B0] overflow-hidden">
         <img

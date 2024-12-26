@@ -29,10 +29,10 @@ const SingleTokenPage = () => {
         <Banner />
         <WhatisSonic />
         {/* <CardSection /> */}
-        {/* <SelectSonic /> */}
-        {/* <SonicLab />
+        <SelectSonic />
+        <SonicLab />
         <Banner />
-        <MemeCoin /> */}
+        <MemeCoin />
       </div>
     </main>
   );

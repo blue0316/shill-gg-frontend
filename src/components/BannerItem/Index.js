@@ -14,7 +14,7 @@ const BannerItem = ({ icon, name }) => {
       ) : (
         <FaCircleArrowUp size={60} color="#F4555B" className="rotate-45" />
       )}
-      <p className="text-[3rem] font-extrabold text-slate-900 whitespace-nowrap tracking-tighter">
+      <p className="text-[3rem] font-extrabold text-slate-900 whitespace-nowrap tracking-tighter uppercase">
         {name ? name : "MEME COIN"}
       </p>
     </div>
